@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandaNova Studios | Original Comics & Visual Storytelling</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- ALL CSS STYLES -->
+    <style>
+        /* ==========================================================================
+           PANDANOVA STUDIOS - COMPLETE EMBEDDED STYLES
+           ========================================================================== */
+        :root {
+            --bg-black: #060608;
+            --bg-dark: #0e0e12;
+            --bg-card: rgba(22, 22, 30, 0.65);
+            --gold-primary: #d4af37;
+            --gold-light: #f5e08c;
+            --gold-dark: #8a7122;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --text-main: #f0f0f5;
+            --text-muted: #9a9ab0;
+            --border-glass: rgba(212, 175, 55, 0.2);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading { font-family: var(--font-heading); letter-spacing: 1.5px; }
+        a { color: var(--gold-primary); text-decoration: none; transition: all 0.3s ease; }
+        a:hover { color: var(--gold-light); }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .section-padding { padding: 90px 0; }
+        .text-center { text-align: center; }
+        .black-bg { background-color: var(--bg-black); }
+        .dark-bg { background-color: var(--bg-dark); }
+        .relative-wrap { position: relative; }
+        .mt-10 { margin-top: 10px; }
+        .mt-20 { margin-top: 20px; }
+        .mt-30 { margin-top: 30px; }
+        .mb-20 { margin-bottom: 20px; }
+        .mb-30 { margin-bottom: 30px; }
+        .bold { font-weight: 700; }
+        .hidden { display: none !important; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+        .gold-text { color: var(--gold-primary); }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-text { text-shadow: 0 0 15px var(--gold-glow); }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 12px 40px var(--gold-glow);
+        }
+
+        /* Badges & Buttons */
+        .badge-gold {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            border-radius: 50px;
+        }
+        .badge-dark {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .btn-gold { background: linear-gradient(135deg, #d4af37, #aa892c); color: #000; }
+        .btn-gold:hover { background: linear-gradient(135deg, #f5e08c, #d4af37); box-shadow: 0 0 20px var(--gold-glow); color: #000; }
+        .btn-glass { background: rgba(255, 255, 255, 0.05); border-color: var(--border-glass); color: var(--text-main); }
+        .btn-glass:hover { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.1); color: var(--gold-light); }
+        .btn-gold-outline { border: 1px solid var(--gold-primary); color: var(--gold-primary); }
+        .btn-gold-outline:hover { background: var(--gold-primary); color: #000; }
+        .btn-full { width: 100%; text-align: center; }
+
+        /* Scroll Progress Bar */
+        .scroll-progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: transparent; z-index: 1001; }
+        .scroll-progress-bar { height: 100%; background: var(--gold-primary); width: 0%; box-shadow: 0 0 10px var(--gold-primary); }
+
+        /* Loader Screen */
+        .loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--bg-black); display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.5s ease;
+        }
+        .loader-bar { width: 150px; height: 2px; background: #222; margin-top: 15px; overflow: hidden; }
+        .loader-progress { width: 100%; height: 100%; background: var(--gold-primary); animation: loaderAnim 1.2s infinite ease-in-out; }
+
+        /* Header Navigation */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 0; transition: all 0.3s ease; }
+        .navbar.scrolled { background: rgba(6, 6, 8, 0.85); backdrop-filter: blur(15px); padding: 12px 0; border-bottom: 1px solid var(--border-glass); }
+        .nav-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .brand-logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); display: flex; align-items: center; }
+        .logo-img { max-height: 40px; margin-right: 10px; }
+        .logo-accent { color: var(--gold-primary); }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-main); }
+        .nav-link.active, .nav-link:hover { color: var(--gold-primary); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+        .nav-toggle .bar { display: block; width: 25px; height: 2px; margin: 5px auto; background-color: var(--text-main); transition: all 0.3s ease; }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative; height: 100vh; min-height: 650px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; text-align: center;
+        }
+        #heroParticles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+        .hero-bg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(26,26,35,0.4) 0%, rgba(6,6,8,0.95) 100%); z-index: 1; }
+        .temple-silhouettes { position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to top, rgba(6,6,8,1), transparent); z-index: 2; }
+        .gold-fog-overlay { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; max-width: 800px; padding: 0 20px; }
+        .hero-title { font-size: 3.5rem; line-height: 1.15; margin: 20px 0; font-weight: 900; }
+        .hero-subtitle { font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 35px; text-transform: uppercase; }
+        .hero-cta-group { display: flex; justify-content: center; gap: 20px; }
+
+        /* Countdown Section */
+        .countdown-wrapper { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 35px 0; }
+        .time-box { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 20px 25px; border-radius: 8px; min-width: 80px; }
+        .time-num { display: block; font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); }
+        .time-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .time-separator { font-family: var(--font-heading); font-size: 2rem; color: var(--gold-primary); }
+        .target-date-badge { margin-top: 15px; font-size: 1.1rem; color: var(--gold-light); letter-spacing: 2px; font-family: var(--font-heading); }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .align-center { align-items: center; }
+
+        .mystery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .mystery-card { text-align: center; border-style: dashed; }
+        .mystery-mark { font-family: var(--font-heading); font-size: 3rem; color: var(--gold-primary); opacity: 0.5; }
+
+        /* About Stats */
+        .stat-item { text-align: center; margin: 20px 0; }
+        .counter-number { font-size: 2.5rem; font-family: var(--font-heading); color: var(--gold-primary); }
+        .stat-label { display: block; color: var(--text-muted); font-size: 0.85rem; }
+        .p-lead { font-size: 1.1rem; color: var(--gold-light); margin-bottom: 15px; }
+
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .gallery-item { cursor: pointer; padding: 0; overflow: hidden; }
+        .placeholder-art { height: 220px; display: flex; align-items: center; justify-content: center; position: relative; background-size: cover; background-position: center; }
+        .art-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-item:hover .art-overlay { opacity: 1; }
+
+        /* Lightbox Modal */
+        .lightbox-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .lightbox-modal.active { display: flex; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: var(--text-main); cursor: pointer; }
+        .lightbox-placeholder { width: 80vw; max-width: 700px; height: 400px; background: #111; border: 1px solid var(--gold-primary); display: flex; align-items: center; justify-content: center; color: var(--gold-light); font-family: var(--font-heading); }
+
+        /* Forms & Maps */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 4px; color: #fff; font-family: var(--font-body); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold-primary); }
+        .map-placeholder { height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border: 1px dashed var(--border-glass); border-radius: 8px; overflow: hidden; position: relative; }
+
+        /* Footer & Back to Top */
+        .site-footer { background: #040405; border-top: 1px solid var(--border-glass); padding: 60px 0 20px 0; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-brand .tagline { font-family: var(--font-heading); color: var(--gold-light); font-size: 0.85rem; margin-bottom: 10px; }
+        .footer-desc { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--gold-primary); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); text-align: center; padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; background: var(--bg-card); border: 1px solid var(--gold-primary); color: var(--gold-primary); border-radius: 50%; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 999; }
+        .back-to-top.visible { opacity: 1; pointer-events: auto; }
+
+        /* Animations */
+        .zoom-bg { animation: slowZoom 20s infinite alternate linear; }
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .pulse-btn { animation: goldPulse 2.5s infinite; }
+        @keyframes goldPulse { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+        @keyframes loaderAnim { 0% { transform: translateX(-100%); } 50% { transform: translateX(0%); } 100% { transform: translateX(100%); } }
+
+        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 992px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } .gallery-grid { grid-template-columns: repeat(2, 1fr); } .footer-content { grid-template-columns: 1fr; } .hero-title { font-size: 2.5rem; } }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; } .gallery-grid { grid-template-columns: 1fr; }
+            .nav-toggle { display: block; }
+            .nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--bg-black); flex-direction: column; justify-content: center; transition: left 0.3s ease; }
+            .nav-menu.open { left: 0; }
+            .countdown-wrapper { gap: 8px; } .time-box { min-width: 55px; padding: 10px; } .time-num { font-size: 1.5rem; } .hero-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-overlay">
+        <div class="loader-content">
+            <h2 class="gold-text glow-text">PANDANOVA</h2>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo">
+                <span class="logo-accent">PANDA</span>NOVA
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#contact" class="nav-link btn-gold-outline">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        
+        <!-- 1. HOME / HERO SECTION -->
+        <section id="home" class="hero-section">
+            <canvas id="heroParticles"></canvas>
+            <div class="hero-bg-layer zoom-bg"></div>
+            <div class="temple-silhouettes"></div>
+            <div class="gold-fog-overlay"></div>
+
+            <div class="hero-content">
+                <span class="badge-gold glow-element">PREMIUM ENTERTAINMENT STUDIO</span>
+                <h1 class="hero-title">Creating Original Worlds <br><span class="gold-gradient-text">That Inspire</span></h1>
+                <p class="hero-subtitle">Original Comics • Animation • Concept Art • Visual Storytelling</p>
+                <div class="hero-cta-group">
+                    <a href="#third-era" class="btn btn-gold">Explore PandaNova</a>
+                    <a href="#about" class="btn btn-glass">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. COUNTDOWN SECTION: THE THIRD ERA -->
+        <section id="third-era" class="section-padding dark-bg relative-wrap text-center">
+            <div class="container">
+                <span class="badge-gold">COUNTDOWN TO REVEAL</span>
+                <h2 class="section-title gold-text glow-text mt-10">THE THIRD ERA</h2>
+                <p class="section-desc">Official First Look & Cover Art Launching Worldwide</p>
+                
+                <div class="target-date-badge">📅 AUGUST 20</div>
+
+                <div id="countdown-container" class="countdown-wrapper">
+                    <div class="time-box"><span id="days" class="time-num">00</span><span class="time-label">Days</span></div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box"><span id="hours" class="time-num">00</span><span class="time-label">Hours</span></div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box"><span id="minutes" class="time-num">00</span><span class="time-label">Minutes</span></div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box"><span id="seconds" class="time-num">00</span><span class="time-label">Seconds</span></div>
+                </div>
+
+                <div id="countdown-finished" class="now-live-card hidden">
+                    <h3 class="gold-text">NOW LIVE</h3>
+                    <p>The Third Era First Look & Cover Art is ready for discovery.</p>
+                </div>
+
+                <div class="mt-30">
+                    <a href="#projects" class="btn btn-gold pulse-btn">View First Look</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ABOUT SECTION -->
+        <section id="about" class="section-padding black-bg">
+            <div class="container">
+                <div class="grid-2 align-center mb-30">
+                    <div>
+                        <span class="badge-gold">ABOUT PANDANOVA</span>
+                        <h2 class="section-title mt-10">Architects of Original Worlds & Unforgettable Stories</h2>
+                        <p class="p-lead mt-10">PandaNova Studios is an independent entertainment studio focusing on original comics, cinematic concept art, and high-impact animation.</p>
+                        <p>We combine legendary narrative design with dark, modern artistic aesthetics to create full multi-media sagas.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3 class="gold-text text-center">STUDIO METRICS</h3>
+                        <div class="stat-item">
+                            <span class="counter-number" data-target="100">0</span>%
+                            <span class="stat-label">Original IPs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="counter-number" data-target="5">0</span>
+                            <span class="stat-label">Classified Projects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header text-center mt-30">
+                    <h2 class="section-title">WHAT WE <span class="gold-text">BUILD</span></h2>
+                </div>
+
+                <div class="grid-3 mt-20">
+                    <div class="glass-card scroll-reveal">
+                        <h3>🎨 Original Comics</h3>
+                        <p>Captivating high-concept sagas with stunning custom visual design and rich world-building.</p>
+                    </div>
+                    <div class="glass-card scroll-reveal">
+                        <h3>🎬 Animation</h3>
+                        <p>Fluid, cinematic sequences engineered to transport audiences into unseen realms.</p>
+                    </div>
+                    <div class="glass-card scroll-reveal">
+                        <h3>⚔️ Concept Art</h3>
+                        <p>Expressive environments, iconic artifacts, and character archetypes crafted by masters.</p>
+                    </div>
+                    <div class="glass-card scroll-reveal">
+                        <h3>📖 Storytelling</h3>
+                        <p>Deep narrative architecture designed for emotional depth and multi-media universes.</p>
+                    </div>
+                    <div class="glass-card scroll-reveal">
+                        <h3>🎮 Interactive Games</h3>
+                        <p>Expanding comic IPs into playable visual experiences and interactive media.</p>
+                    </div>
+                    <div class="glass-card scroll-reveal">
+                        <h3>🚀 Future Creative</h3>
+                        <p>Unannounced cross-platform media ventures currently operating under strict NDA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section id="projects" class="section-padding dark-bg">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">OUR <span class="gold-text">PROJECTS</span></h2>
+                    <p class="section-desc">Official Lineup & Teasers</p>
+                </div>
+
+                <div class="glass-card grid-2 align-center mt-30">
+                    <div>
+                        <span class="badge-gold">FLAGSHIP IP</span>
+                        <h2 class="gold-text glow-text mt-10">THE THIRD ERA</h2>
+                        <p class="p-lead">"A New Original Comic Universe"</p>
+                        <p>A new world is waiting to be discovered. Ancient temple silhouettes, golden lighting, and forgotten atmospheres collide. No character details or plot spoilers are revealed prior to launch.</p>
+                        <p class="mt-10"><strong>Official First Look & Cover Art:</strong> August 20</p>
+                        <div class="mt-20">
+                            <a href="#contact" class="btn btn-gold">Notify Me</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Cover Art Box Slot -->
+                    <div class="map-placeholder" id="coverSlot">
+                        <span style="font-size: 3rem;">🔒</span>
+                        <p class="gold-text mt-10">COVER ART LOCKED</p>
+                        <span class="badge-dark">Unlocks August 20</span>
+                    </div>
+                </div>
+
+                <h3 class="section-title text-center mt-30">CLASSIFIED <span class="gold-text">PROJECTS</span></h3>
+                <div class="mystery-grid mt-20">
+                    <div class="glass-card mystery-card scroll-reveal"><div class="mystery-mark">?</div><div class="mystery-status">CLASSIFIED</div><h4>Project Aether</h4><p>Identity Unknown</p><span class="badge-dark">Awaiting Reveal</span></div>
+                    <div class="glass-card mystery-card scroll-reveal"><div class="mystery-mark">?</div><div class="mystery-status">CLASSIFIED</div><h4>Project Kage</h4><p>Identity Unknown</p><span class="badge-dark">Awaiting Reveal</span></div>
+                    <div class="glass-card mystery-card scroll-reveal"><div class="mystery-mark">?</div><div class="mystery-status">CLASSIFIED</div><h4>Project Sol</h4><p>Identity Unknown</p><span class="badge-dark">Awaiting Reveal</span></div>
+                    <div class="glass-card mystery-card scroll-reveal"><div class="mystery-mark">?</div><div class="mystery-status">CLASSIFIED</div><h4>Project Chrono</h4><p>Identity Unknown</p><span class="badge-dark">Awaiting Reveal</span></div>
+                    <div class="glass-card mystery-card scroll-reveal"><div class="mystery-mark">?</div><div class="mystery-status">CLASSIFIED</div><h4>Project Nexus</h4><p>Identity Unknown</p><span class="badge-dark">Awaiting Reveal</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. GALLERY SECTION -->
+        <section id="gallery" class="section-padding black-bg">
+            <div class="container text-center">
+                <h2 class="section-title">STUDIO <span class="gold-text">GALLERY</span></h2>
+                <p class="section-desc mb-30">Official Teaser Art, Branding & Posters</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="PandaNova Crest">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-crest.jpg');">
+                            <div class="art-overlay"><span>PANDANOVA BRANDING</span></div>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="The Third Era Teaser">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-teaser.jpg');">
+                            <div class="art-overlay"><span>THE THIRD ERA TEASER</span></div>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="Official Emblem">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-emblem.jpg');">
+                            <div class="art-overlay"><span>OFFICIAL LOGO</span></div>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="Temple Concept">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-temple.jpg');">
+                            <div class="art-overlay"><span>CONCEPT ART</span></div>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="Golden Horizon">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-horizon.jpg');">
+                            <div class="art-overlay"><span>ENVIRONMENT</span></div>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card lightbox-trigger" data-title="Key Artwork">
+                        <div class="placeholder-art" style="background-image: url('assets/images/gallery-keyart.jpg');">
+                            <div class="art-overlay"><span>KEY ART</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. NEWS SECTION -->
+        <section id="news" class="section-padding dark-bg">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">LATEST <span class="gold-text">NEWS</span></h2>
+                    <p class="section-desc">Announcements and official studio dispatches.</p>
+                </div>
+
+                <div class="grid-3 mt-30">
+                    <article class="glass-card scroll-reveal">
+                        <div class="badge-gold">Studio Announcement</div>
+                        <h3 class="news-title mt-10">Welcome to PandaNova Studios</h3>
+                        <p class="news-excerpt mt-10">PandaNova Studios officially unveils its portal. Discover our vision for original storytelling, art, and world-building.</p>
+                    </article>
+                    <article class="glass-card scroll-reveal">
+                        <div class="badge-gold">Comic Reveal</div>
+                        <h3 class="news-title mt-10">The Third Era First Look Coming August 20</h3>
+                        <p class="news-excerpt mt-10">Mark your calendars. The official teaser cover art and world backstory for our premier universe will be unlocked.</p>
+                    </article>
+                    <article class="glass-card scroll-reveal">
+                        <div class="badge-gold">Development</div>
+                        <h3 class="news-title mt-10">More Projects Coming Soon</h3>
+                        <p class="news-excerpt mt-10">Our creative teams are hard at work engineering five undisclosed IPs spanning animation, visual novels, and media.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONTACT SECTION -->
+        <section id="contact" class="section-padding black-bg">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="glass-card">
+                        <h2 class="gold-text mb-20">Contact Studio</h2>
+                        <form id="contactForm" class="form-wrapper">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" required placeholder="Enter full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" required placeholder="name@domain.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="4" required placeholder="State your inquiry..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold btn-full">Send Dispatch</button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div class="glass-card mb-20">
+                            <h3 class="gold-text">PANDANOVA HQ</h3>
+                            <p class="mt-10">Creative Operations & Art Direction</p>
+                            <p class="text-muted">Inquiries: contact@pandanovastudios.com</p>
+                        </div>
+                        <div class="glass-card map-placeholder">
+                            <span style="font-size:2.5rem;">📍</span>
+                            <p class="gold-text mt-10">PANDANOVA HEADQUARTERS</p>
+                            <p class="text-muted">[ Creative Operations Studio ]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div id="lightbox-display" class="lightbox-placeholder"></div>
+    </div>
+
+    <!-- Back to top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3 class="gold-text">PANDANOVA STUDIOS</h3>
+                <p class="tagline">Dream. Create. Inspire.</p>
+                <p class="footer-desc">Crafting high-concept original universes and legendary animation projects.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PandaNova Studios. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ALL JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Hide Loader
+            const loader = document.getElementById('loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }, 600);
+            }
+
+            // 2. Navbar Scroll & Progress Bar
+            const navbar = document.getElementById('navbar');
+            const progressBar = document.getElementById('progressBar');
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+
+                if (progressBar) progressBar.style.width = scrolled + "%";
+                if (winScroll > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+
+                if (winScroll > 400) backToTopBtn.classList.add('visible');
+                else backToTopBtn.classList.remove('visible');
+            });
+
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // 3. Mobile Navigation Toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('open');
+                });
+            }
+
+            // 4. Scroll Reveal
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+            const revealOnScroll = () => {
+                const triggerBottom = window.innerHeight * 0.85;
+                revealElements.forEach(el => {
+                    if (el.getBoundingClientRect().top < triggerBottom) {
+                        el.classList.add('revealed');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // 5. Countdown Engine with Auto Cover Reveal
+            const targetDate = new Date("August 20, 2026 00:00:00").getTime();
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    // Hide Countdown Box & Show "Now Live" Card
+                    const countdownBox = document.getElementById('countdown-container');
+                    const finishedBox = document.getElementById('countdown-finished');
+                    if (countdownBox) countdownBox.classList.add('hidden');
+                    if (finishedBox) finishedBox.classList.remove('hidden');
+
+                    // Reveal the Cover Art Image automatically on August 20
+                    const coverSlot = document.getElementById('coverSlot');
+                    if (coverSlot && !coverSlot.querySelector('img')) {
+                        coverSlot.innerHTML = `<img src="assets/images/third-era-cover.jpg" alt="The Third Era Cover Art" style="width:100%; height:100%; object-fit:cover; border-radius:8px; border:1px solid var(--gold-primary);">`;
+                    }
+                    return;
+                }
+
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            };
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            // 6. Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxDisplay = document.getElementById('lightbox-display');
+            document.querySelectorAll('.lightbox-trigger').forEach(item => {
+                item.addEventListener('click', () => {
+                    lightboxDisplay.innerText = item.getAttribute('data-title');
+                    lightbox.classList.add('active');
+                });
+            });
+            document.querySelector('.lightbox-close').addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+
+            // 7. Counter Animation
+            document.querySelectorAll('.counter-number').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const inc = target / 50;
+                const update = () => {
+                    if (count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(update, 30);
+                    } else counter.innerText = target;
+                };
+                update();
+            });
+
+            // 8. Contact Form Handler
+            document.getElementById('contactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! Your dispatch has been successfully recorded.');
+            });
+        });
+
+        // 9. Particles Engine
+        const canvas = document.getElementById('heroParticles');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedY = Math.random() * -0.5 - 0.2;
+                }
+                update() {
+                    this.y += this.speedY;
+                    if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; }
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(212, 175, 55, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            for (let i = 0; i < 50; i++) particles.push(new Particle());
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
